@@ -12,11 +12,9 @@ module.exports = {
   env: {
     browser: true,
     es2024: true,
-    jest: true,
   },
   plugins: [
     '@typescript-eslint',
-    'jest',
     'react',
     'react-hooks',
     'jsx-a11y',
@@ -27,7 +25,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:jest/recommended',
   ],
   settings: {
     react: {
@@ -85,17 +82,6 @@ module.exports = {
     }],
     '@typescript-eslint/naming-convention': [
       'error',
-      {
-        selector: 'interface',
-        format: ['PascalCase'],
-        prefix: ['I'],
-        filter: { regex: 'VM$', match: false },
-      },
-      {
-        selector: 'typeAlias',
-        format: ['PascalCase'],
-        prefix: ['T'],
-      },
       {
         selector: 'variable',
         format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
