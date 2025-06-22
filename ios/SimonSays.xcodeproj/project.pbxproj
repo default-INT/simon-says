@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04228C9D2E06DAA100660D35 /* a_major.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04228C9B2E06DAA100660D35 /* a_major.wav */; };
+		04228C9E2E06DAA100660D35 /* f_major.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04228C9C2E06DAA100660D35 /* f_major.wav */; };
+		04985A752E06B9E500C22FA0 /* d_major.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04985A732E06B9E500C22FA0 /* d_major.wav */; };
+		04985A762E06B9E500C22FA0 /* e_major.wav in Resources */ = {isa = PBXBuildFile; fileRef = 04985A742E06B9E500C22FA0 /* e_major.wav */; };
 		0C80B921A6F3F58F76C31292 /* libPods-SimonSays.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SimonSays.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3BC48338A0A7556C7B3DB2F8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
@@ -15,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04228C9B2E06DAA100660D35 /* a_major.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = a_major.wav; sourceTree = "<group>"; };
+		04228C9C2E06DAA100660D35 /* f_major.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = f_major.wav; sourceTree = "<group>"; };
+		04985A732E06B9E500C22FA0 /* d_major.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d_major.wav; sourceTree = "<group>"; };
+		04985A742E06B9E500C22FA0 /* e_major.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = e_major.wav; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SimonSays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimonSays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SimonSays/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SimonSays/Info.plist; sourceTree = "<group>"; };
@@ -70,6 +78,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				04228C9B2E06DAA100660D35 /* a_major.wav */,
+				04228C9C2E06DAA100660D35 /* f_major.wav */,
+				04985A732E06B9E500C22FA0 /* d_major.wav */,
+				04985A742E06B9E500C22FA0 /* e_major.wav */,
 				13B07FAE1A68108700A75B9A /* SimonSays */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -161,6 +173,10 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3BC48338A0A7556C7B3DB2F8 /* PrivacyInfo.xcprivacy in Resources */,
+				04228C9D2E06DAA100660D35 /* a_major.wav in Resources */,
+				04228C9E2E06DAA100660D35 /* f_major.wav in Resources */,
+				04985A752E06B9E500C22FA0 /* d_major.wav in Resources */,
+				04985A762E06B9E500C22FA0 /* e_major.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,9 +207,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimonSays/Pods-SimonSays-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimonSays/Pods-SimonSays-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -230,9 +250,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimonSays/Pods-SimonSays-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimonSays/Pods-SimonSays-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -260,6 +284,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3JW6BWD5Q5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SimonSays/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -288,6 +313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3JW6BWD5Q5;
 				INFOPLIST_FILE = SimonSays/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -376,10 +402,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -448,10 +471,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

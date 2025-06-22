@@ -1,10 +1,19 @@
 import { theme } from '@root/shared/config/theme.ts';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { runOnJS, useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
+import SoundPlayer from 'react-native-sound-player';
 import { getRandomInt } from '@root/shared/lib/getRandomInt.ts';
 
-const tiles = [theme.tiles.green, theme.tiles.red, theme.tiles.yellow, theme.tiles.blue];
 const PLAY_TIMEOUT = 500;
+const tiles = [theme.tiles.green, theme.tiles.red, theme.tiles.yellow, theme.tiles.blue];
+const soundSampleNames = ['a_major', 'd_major', 'e_major', 'f_major'];
+const delay = () => new Promise<void>(resolve => setTimeout(resolve, PLAY_TIMEOUT));
 
 export const useSimonGame = () => {
   const [sequence, setSequence] = useState<number[]>([]);
@@ -36,11 +45,19 @@ export const useSimonGame = () => {
     const newSequence = [...sequence, getRandomInt(tiles.length)];
     setSequence(newSequence);
 
+    await delay();
+
     for (let i = 0; i < newSequence.length; i++) {
-      await flashTile(newSequence[i]);
+      const itemIdx = newSequence[i];
+
+      SoundPlayer.stop();
+      SoundPlayer.playSoundFile(soundSampleNames[itemIdx], 'wav');
+
+      await flashTile(itemIdx);
     }
     setIsPlaying(false);
     setIsGameRan(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sequence]);
 
   const runGame = useCallback(() => {
@@ -49,6 +66,8 @@ export const useSimonGame = () => {
   }, [runSequence]);
 
   const onTapTile = useCallback((index: number) => () => {
+    SoundPlayer.stop();
+    SoundPlayer.playSoundFile(soundSampleNames[index], 'wav');
     setUserSequence(prev => [...prev, index]);
   }, []);
 
@@ -70,6 +89,7 @@ export const useSimonGame = () => {
     setUserSequence([]);
     setScore(prev => prev + 1);
     runSequence();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSequence]);
 
   return {
