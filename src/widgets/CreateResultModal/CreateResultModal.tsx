@@ -19,7 +19,8 @@ export const CreateResultModal = memo(() => {
   const handleSubmit = useCallback(async (values: CreateResultFormValues) => {
     const { name } = values;
     try {
-      // NOTE: in task not describe how need to be implement persist storage or need to implement optimistic
+      // NOTE: in task not describe how need to be implement persist storage or
+      // need to implement optimistic
       // update, so in this implementation just syncing list between API data and realm
       const { success } = await api.results.post({ score, date: date.toISOString(), name });
       if (!success) throw Error('Error creating result');
@@ -29,7 +30,7 @@ export const CreateResultModal = memo(() => {
     } finally {
       setIsVisible(false);
     }
-  }, [score, date]);
+  }, [score, date, dispatch]);
 
   return (
     <Modal

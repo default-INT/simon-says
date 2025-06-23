@@ -8,6 +8,7 @@ import { SortOrder } from '@root/shared/config/list.ts';
 import { toCapitalize } from '@root/shared/lib/toCapitalize.ts';
 import { selectSortedResults } from '@root/widgets/ResultsTable/model';
 import { API_KEY, API_URL } from '@env';
+import { LoadingPlaceholder } from '@root/shared/ui/LoadingPlaceholder';
 import { resultRowKeyExtractor, resultRowRenderItem } from './ui/ResultRowItem';
 import { styles } from './styles';
 
@@ -31,6 +32,7 @@ export const ResultsTable = memo(() => {
   const [sortKey, setSortKey] = useState<keyof GameResult>('date');
   const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Desc);
   const results = useSelector((state: RootState) => selectSortedResults(state, sortKey, sortOrder));
+  const isLoading = useSelector((state: RootState) => state.results.loading);
 
   const toggleSortByKey = useCallback((key: keyof GameResult) => () => {
     if (sortKey === key) {
@@ -40,6 +42,8 @@ export const ResultsTable = memo(() => {
     setSortKey(key);
     setSortOrder(SortOrder.Asc);
   }, [sortKey]);
+
+  if (isLoading && !results.length) return  <LoadingPlaceholder />;
 
   return (
     <View>
