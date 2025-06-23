@@ -11,6 +11,7 @@ import SoundPlayer from 'react-native-sound-player';
 import { getRandomInt } from '@root/shared/lib/getRandomInt.ts';
 import { useNavigation } from '@react-navigation/native';
 import { NavigatorProps } from '@root/shared/config/routes.ts';
+import { Alert } from 'react-native';
 
 const PLAY_TIMEOUT = 500;
 const tiles = [theme.tiles.green, theme.tiles.red, theme.tiles.yellow, theme.tiles.blue];
@@ -84,7 +85,9 @@ export const useSimonGame = () => {
       setScore(0);
       setIsGameRan(false);
 
-      navigate('results');
+      if (!score) return Alert.alert('You loose :(', 'Try again!');
+
+      navigate('results', { score, date: new Date() });
 
       return;
     }

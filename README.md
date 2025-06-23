@@ -1,97 +1,150 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+[![Node.js Version](https://img.shields.io/badge/Node.js-v20.10.0-green.svg)](https://nodejs.org/)
+[![npm Version](https://img.shields.io/badge/yarn-v3.6.4-blueviolet.svg)](https://v3.yarnpkg.com/getting-started/install)
+[![React Native Version](https://img.shields.io/badge/react--native-v0.73.0-darkblue.svg)](https://reactnative.dev/)
+[![React Version](https://img.shields.io/badge/react-v18.2.0-blue.svg)](https://react.dev/)
 
-# Getting Started
+# Simon Says – React Native Game App
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+A mobile game based on the classic **Simon Says**, developed with React Native CLI, Redux Toolkit, and Realm for persistent state.
 
-## Step 1: Start Metro
+## 🎮 Overview
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- Random color sequences that increase with every round
+- High-score tracking with local and remote persistence
+- Sortable results table
+- Sound effects and modals
+- Clean architecture with modern TypeScript best practices
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 💾 Persistence Strategy
 
-# OR using Yarn
-yarn start
+> **Note:** The task did not specify how exactly the persistent storage should be implemented (e.g., whether to use an optimistic update strategy).
+
+This implementation uses a simple sync mechanism:
+- Data from the server is fetched and stored locally in Realm.
+- When a new result is submitted, it is posted to the server, then synced to Realm on the next fetch.
+
+```ts
+// NOTE: In task not described how to implement persist storage or optimistic update,
+// so this implementation just syncs data between API and Realm.
 ```
 
-## Step 2: Build and run your app
+Alternative Option (Not implemented):
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+An optimistic update approach could be used, where:
+1.	The app updates local state and Realm immediately.
+2.	Then sends the update to the remote server.
+3.	Handles any failure by retrying or reverting the change.
 
-### Android
+## Installation
+Before you get started, make sure you have Node.js installed on your machine. Then, follow these steps:
 
-```sh
-# Using npm
-npm run android
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Run the following command to install dependencies: `npm install`
+4. For iOS, navigate to the iOS directory and run `cd ios & pod install`
+5. Run `npm start`
 
-# OR using Yarn
-yarn android
+## 📂 Project Structure
+
+The project follows a feature-based modular structure:
+
+```
+src/
+├── app/                  # App entry, navigation, global store setup
+│   ├── App.tsx
+│   ├── config/           # Root reducer/saga/store config
+│   └── navigation/       # Root navigation stack
+│
+├── features/             # Feature-specific logic
+│   ├── simonGame/        # Game logic (hooks, UI)
+│   └── createResultForm/ # Form to submit game results
+│
+├── screens/              # App screens
+│   ├── GameScreen/
+│   └── ResultsScreen/
+│
+├── widgets/              # Reusable components composed from features/entities
+│   ├── SimonSaysBoard/
+│   ├── CreateResultModal/
+│   └── ResultsTable/
+│
+├── shared/               # Shared UI components, config, and utilities
+│   ├── ui/               # Inputs, buttons, text, etc.
+│   ├── config/           # Theme, routes, environment vars
+│   └── lib/              # Utilities and helpers
+│
+├── entities/             # State management and persistence for results
+│   └── results/          # Reducers, actions, sagas, Realm schemas
 ```
 
-### iOS
+Other files of note:
+- `index.js`: App entry point
+- `metro.config.js`, `babel.config.js`: RN configuration
+- `.eslintrc.js`, `.prettierrc.js`: Code style configs
+- `tsconfig.json`: TypeScript configuration
+- `jest.config.js`: Testing config
+- `tests/`: Unit tests
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+---
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 🧩 Tech Stack
 
-```sh
-bundle install
+- **React Native CLI** (no Expo)
+- **TypeScript**
+- **Redux Toolkit + Redux Saga**
+- **React Navigation v6**
+- **Realm** for local storage
+- **Axios** for HTTP
+- **Yup**, **Formik** for form handling
+- **Sound-player** for UI feedback
+
+---
+
+## 🌐 API Integration
+
+`.env` file example:
+```.dotenv
+API_URL=<url>
+API_KEY=<key>
+
 ```
 
-Then, and every time you update your native dependencies, run:
+### Endpoints
 
-```sh
-bundle exec pod install
-```
+Base URL: `https://simon.5f.wtf`
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+| Method | Endpoint       | Description               |
+|--------|----------------|---------------------------|
+| GET    | /results       | Get top results (≥10)     |
+| POST   | /results       | Submit result (name/date/score) |
+| GET    | /health        | Health check              |
 
-```sh
-# Using npm
-npm run ios
+📚 [Interactive API Docs](https://simon.5f.wtf/api-docs/)
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 📦 Dependencies
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```json
+{
+  "@react-navigation/native": "^7.1.0",
+  "@react-navigation/native-stack": "^7.3.16",
+  "@realm/react": "^0.11.0",
+  "@reduxjs/toolkit": "^2.8.2",
+  "axios": "^1.10.0",
+  "formik": "^2.4.6",
+  "react": "^19.0.0",
+  "react-is": "^19.0.0",
+  "react-native": "^0.79.4",
+  "react-native-reanimated": "^3.18.0",
+  "react-native-safe-area-context": "^5.4.1",
+  "react-native-screens": "^4.11.1",
+  "react-native-sound-player": "^0.14.5",
+  "react-redux": "^9.2.0",
+  "realm": "^12.14.2",
+  "redux": "^5.0.1",
+  "redux-saga": "^1.3.0",
+  "yup": "^1.6.1"
+}

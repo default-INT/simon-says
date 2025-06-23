@@ -8,6 +8,7 @@ export const theme = {
   dangerousRegular: '#f64646',
   mainExtra: '#000',
   mainBasic: '#fff',
+  modalBackground: '#17171C66',
   tiles: {
     green: '#64dd16',
     red: '#f11414',

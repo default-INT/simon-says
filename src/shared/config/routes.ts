@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export interface RootNavigationParams extends ParamListBase {
   game: never
-  results: undefined
+  results: { score: number, date: Date }
 }
 
 export type NavigatorProps = NativeStackNavigationProp<RootNavigationParams>;
