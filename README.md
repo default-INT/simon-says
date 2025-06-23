@@ -1,5 +1,5 @@
 [![Node.js Version](https://img.shields.io/badge/Node.js-v20.10.0-green.svg)](https://nodejs.org/)
-[![npm Version](https://img.shields.io/badge/yarn-v3.6.4-blueviolet.svg)](https://v3.yarnpkg.com/getting-started/install)
+[![npm Version](https://img.shields.io/badge/npm-v10.2.3-blueviolet.svg)](https://v3.yarnpkg.com/getting-started/install)
 [![React Native Version](https://img.shields.io/badge/react--native-v0.79.4-darkblue.svg)](https://reactnative.dev/)
 [![React Version](https://img.shields.io/badge/react-v19.0.0-blue.svg)](https://react.dev/)
 
