@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export interface RootNavigationParams extends ParamListBase {
   game: never
-  results: any
+  results: undefined
 }
 
 export type NavigatorProps = NativeStackNavigationProp<RootNavigationParams>;

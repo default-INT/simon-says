@@ -20,7 +20,7 @@ export const SimonSaysBoard = memo(() => {
           <ColorTile
             key={color}
             index={idx}
-            disabled={isPlaying}
+            disabled={!isGameRan || isPlaying}
             style={tileStyles[idx]}
             color={color}
             onPress={onTapTile(idx)}
@@ -30,3 +30,5 @@ export const SimonSaysBoard = memo(() => {
     </View>
   );
 });
+
+SimonSaysBoard.displayName = 'SimonSaysBoard';

@@ -9,6 +9,8 @@ import {
 } from 'react-native-reanimated';
 import SoundPlayer from 'react-native-sound-player';
 import { getRandomInt } from '@root/shared/lib/getRandomInt.ts';
+import { useNavigation } from '@react-navigation/native';
+import { NavigatorProps } from '@root/shared/config/routes.ts';
 
 const PLAY_TIMEOUT = 500;
 const tiles = [theme.tiles.green, theme.tiles.red, theme.tiles.yellow, theme.tiles.blue];
@@ -17,6 +19,7 @@ const delay = () => new Promise<void>(resolve => setTimeout(resolve, PLAY_TIMEOU
 
 export const useSimonGame = () => {
   const [sequence, setSequence] = useState<number[]>([]);
+  const { navigate } = useNavigation<NavigatorProps>();
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [score, setScore] = useState<number>(0);
   const opacities = useRef(tiles.map(() => useSharedValue(1))).current;
@@ -80,6 +83,8 @@ export const useSimonGame = () => {
       setSequence([]);
       setScore(0);
       setIsGameRan(false);
+
+      navigate('results');
 
       return;
     }
